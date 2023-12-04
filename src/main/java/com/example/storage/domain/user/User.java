@@ -6,11 +6,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "\"user\"", schema = "storage")
+@ToString
+@Table(name = "user", schema = "storage")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

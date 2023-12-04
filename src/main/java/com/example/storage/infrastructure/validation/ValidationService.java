@@ -18,4 +18,12 @@ public class ValidationService {
         }
         return optionalUser.get();
     }
+
+    public static void isExistByEmail(boolean emailExist) {
+        if (emailExist) {
+            System.out.println("Email already exists");
+            throw new BusinessException("Email already exists", 111);
+        }
+
+    }
 }

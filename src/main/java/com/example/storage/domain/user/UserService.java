@@ -2,7 +2,6 @@ package com.example.storage.domain.user;
 
 
 import com.example.storage.business.Status;
-import com.example.storage.business.profile.dto.UserInfo;
 import com.example.storage.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,12 @@ public class UserService {
         return ValidationService.getValidUser(optionalUser);
     }
 
-    public void createNewUserProfile(UserInfo userInfo) {
+    public User createUser(User user) {
 
+        return userRepository.save(user);
+    }
+
+    public boolean isExistByEmail(String email) {
+        return userRepository.existByEmail(email);
     }
 }
