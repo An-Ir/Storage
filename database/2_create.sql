@@ -47,8 +47,8 @@ CREATE TABLE "order" (
 -- Table: profile
 CREATE TABLE profile (
                          id serial  NOT NULL,
-                         given_name varchar(30)  NOT NULL,
-                         surname varchar(50)  NOT NULL,
+                         first_name varchar(30)  NOT NULL,
+                         last_name varchar(50)  NOT NULL,
                          user_id int  NOT NULL,
                          CONSTRAINT profile_pk PRIMARY KEY (id)
 );
