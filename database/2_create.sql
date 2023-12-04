@@ -11,14 +11,14 @@ CREATE TABLE county (
 
 -- Table: feature
 CREATE TABLE feature (
-                         id int  NOT NULL,
+                         id serial  NOT NULL,
                          name varchar(255)  NOT NULL,
                          CONSTRAINT id PRIMARY KEY (id)
 );
 
 -- Table: image
 CREATE TABLE image (
-                       id int  NOT NULL,
+                       id serial  NOT NULL,
                        storage_id int  NOT NULL,
                        data bytea  NOT NULL,
                        CONSTRAINT image_pk PRIMARY KEY (id)
@@ -35,7 +35,7 @@ CREATE TABLE location (
 
 -- Table: order
 CREATE TABLE "order" (
-                         id int  NOT NULL,
+                         id serial  NOT NULL,
                          user_id int  NOT NULL,
                          customer_user_id int  NOT NULL,
                          storage_id int  NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE role (
 
 -- Table: storage_feature
 CREATE TABLE storage_feature (
-                                 id int  NOT NULL,
+                                 id serial  NOT NULL,
                                  storage_id int  NOT NULL,
                                  feature_id int  NOT NULL,
                                  CONSTRAINT storage_feature_pk PRIMARY KEY (id)
@@ -83,7 +83,7 @@ CREATE TABLE storage (
 
 -- Table: type
 CREATE TABLE type (
-                      id int  NOT NULL,
+                      id serial  NOT NULL,
                       name varchar(255)  NOT NULL,
                       CONSTRAINT type_pk PRIMARY KEY (id)
 );
