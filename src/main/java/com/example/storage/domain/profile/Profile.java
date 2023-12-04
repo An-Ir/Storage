@@ -20,12 +20,12 @@ public class Profile {
     @Size(max = 30)
     @NotNull
     @Column(name = "given_name", nullable = false, length = 30)
-    private String givenName;
+    private String firstName;
 
     @Size(max = 50)
     @NotNull
     @Column(name = "surname", nullable = false, length = 50)
-    private String surname;
+    private String lastName;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
