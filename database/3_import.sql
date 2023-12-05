@@ -7,24 +7,36 @@ INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAUL
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 2, 'andrus', '123', 'D');
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 2, 'anton', '123', 'D');
 
-INSERT INTO storage.county (id, name) VALUES (1, 'Harju');
-INSERT INTO storage.county (id, name) VALUES (2, 'Hiiu');
-INSERT INTO storage.county (id, name) VALUES (3, 'Ida-Viru');
-INSERT INTO storage.county (id, name) VALUES (4, 'Jõgeva');
-INSERT INTO storage.county (id, name) VALUES (5, 'Järva');
-INSERT INTO storage.county (id, name) VALUES (6, 'Lääne');
-INSERT INTO storage.county (id, name) VALUES (7, 'Lääne-Viru');
-INSERT INTO storage.county (id, name) VALUES (8, 'Põlva');
-INSERT INTO storage.county (id, name) VALUES (9, 'Pärnu');
-INSERT INTO storage.county (id, name) VALUES (10, 'Rapla');
-INSERT INTO storage.county (id, name) VALUES (11, 'Saare');
-INSERT INTO storage.county (id, name) VALUES (12, 'Tartu');
-INSERT INTO storage.county (id, name) VALUES (13, 'Valga');
-INSERT INTO storage.county (id, name) VALUES (14, 'Viljandi');
-INSERT INTO storage.county (id, name) VALUES (15, 'Võru');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Harju');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Hiiu');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Ida-Viru');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Jõgeva');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Järva');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Lääne');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Lääne-Viru');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Põlva');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Pärnu');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Rapla');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Saare');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Tartu');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Valga');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Viljandi');
+INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Võru');
 
-INSERT INTO storage.type (id, name) VALUES (1, 'Keldriboks');
-INSERT INTO storage.type (id, name) VALUES (2, 'Garaaž');
-INSERT INTO storage.type (id, name) VALUES (3, 'Ladu');
-INSERT INTO storage.type (id, name) VALUES (4, 'Angaar');
-INSERT INTO storage.type (id, name) VALUES (5, 'Varia');
+INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Keldriboks');
+INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Garaaž');
+INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Ladu');
+INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Angaar');
+INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Varia');
+
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 1, 59.41095402926769, 24.73704188387255);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 9, 58.38106365626340, 24.49951298280597);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 14, 58.30321349111780, 25.57822312103430);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 11, 58.25660700396890, 22.48073927116400);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 3, 59.38471618906680, 27.33955930526720);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 13, 57.77789351473060, 26.03407621534382);
+
+INSERT INTO storage.storage (id, user_id, type_id, location_id, area, price, description, status) VALUES (DEFAULT, 4, 2, 6, 60, 210, 'Garaaž Valga kesklinnas', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, area, price, description, status) VALUES (DEFAULT, 2, 3, 5, 500, 400, 'Kõle sara Täkumetsas', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, area, price, description, status) VALUES (DEFAULT, 3, 4, 3, 740, 987, 'Hiiglaslik angaar', 'A');
+

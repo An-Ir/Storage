@@ -28,8 +28,8 @@ CREATE TABLE image (
 CREATE TABLE location (
                           id serial  NOT NULL,
                           county_id int  NOT NULL,
-                          longitude decimal(16,14)  NULL,
                           latitude decimal(16,14)  NULL,
+                          longitude decimal(16,14)  NULL,
                           CONSTRAINT location_pk PRIMARY KEY (id)
 );
 
