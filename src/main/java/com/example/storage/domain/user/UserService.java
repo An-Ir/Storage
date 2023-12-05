@@ -19,4 +19,13 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findUserBy(email, password, Status.ACTIVE);
         return ValidationService.getValidUser(optionalUser);
     }
+
+    public User createUser(User user) {
+
+        return userRepository.save(user);
+    }
+
+    public boolean isExistByEmail(String email) {
+        return userRepository.existByEmail(email);
+    }
 }
