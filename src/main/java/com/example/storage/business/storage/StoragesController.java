@@ -3,20 +3,18 @@ import com.example.storage.business.storage.dto.StorageImageInfo;
 
 import com.example.storage.business.storage.dto.StorageInfo;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import jakarta.annotation.Resource;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/storage")
 public class StoragesController {
 
     @Resource
     private StoragesService storagesService;
 
-    @PostMapping
+    @PostMapping("/storage")
     @Operation(summary = "Uue lao lisamine")
     public void addNewStorage(@RequestBody StorageInfo storageInfo) {
     }
