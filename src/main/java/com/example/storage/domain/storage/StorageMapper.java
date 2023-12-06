@@ -11,6 +11,7 @@ public interface StorageMapper {
 
     @Mapping(source = "name", target = "storageName")
     @Mapping(source = "id", target = "storageId")
+    @Mapping(source = "price", target = "storagePrice")
     StorageImageInfo toStorageInfo(Storage storage);
 
     List<StorageImageInfo> toStorageInfos(List<Storage> storages);

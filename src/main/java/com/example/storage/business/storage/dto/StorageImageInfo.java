@@ -19,6 +19,7 @@ public class StorageImageInfo implements Serializable {
     @NotNull
     @Size(max = 50)
     private String storageName;
+    private Integer storagePrice;
     private String imageData;
 
 }

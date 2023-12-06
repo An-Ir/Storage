@@ -24,7 +24,8 @@ CREATE TABLE image
     id         serial NOT NULL,
     storage_id int    NOT NULL,
     data       bytea  NOT NULL,
-    CONSTRAINT image_pk PRIMARY KEY (id)
+    CONSTRAINT image_pk PRIMARY KEY (id),
+    UNIQUE (storage_id)
 );
 
 -- Table: location
