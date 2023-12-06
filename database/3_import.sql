@@ -35,8 +35,13 @@ INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAUL
 INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 11, 58.25660700396890, 22.48073927116400);
 INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 3, 59.38471618906680, 27.33955930526720);
 INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 13, 57.77789351473060, 26.03407621534382);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 7, 59.36180293754910, 26.31411555746854);
 
 INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 2, 6, 'minu garaaž', 60, 210, 'Garaaž Valga kesklinnas', 'A');
 INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 3, 5, 'tootmishoone', 500, 400, 'Kõle sara Täkumetsas', 'A');
 INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 4, 3, 'unistuste angaar', 740, 987, 'Hiiglaslik angaar', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 2, 4, 'Esplanaadi', 150, 150, 'Puhas garaažiboks', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 1, 2, 1, 'uhiuus garaaž', 80, 100, 'lihtsalt imelin', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 4, 2, 'Eralennuki angaar', 1000, 5000, 'Kõigi kellade ja viledega angaar.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 1, 7, 'kelder', 40, 50, 'Kõk vanaema hoidised mahuvad ära', 'A');
 
