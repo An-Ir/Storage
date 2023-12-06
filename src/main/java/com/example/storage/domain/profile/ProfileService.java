@@ -10,6 +10,7 @@ public class ProfileService {
     private ProfileRepository profileRepository;
 
     public Profile createProfile(Profile profile) {
+
         return profileRepository.save(profile);
     }
 }
