@@ -34,6 +34,11 @@ public class Storage {
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
 
+    @Size(max = 50)
+    @NotNull
+    @Column(name = "name", nullable = false, length = 50)
+    private String name;
+
     @NotNull
     @Column(name = "area", nullable = false)
     private Integer area;
