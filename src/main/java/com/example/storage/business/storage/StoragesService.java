@@ -8,9 +8,6 @@ import com.example.storage.domain.image.ImageService;
 import com.example.storage.domain.storage.Storage;
 import com.example.storage.domain.storage.StorageMapper;
 import com.example.storage.domain.storage.StorageService;
-import com.example.storage.domain.storagefeature.StorageFeature;
-import com.example.storage.domain.storagefeature.StorageFeatureDto;
-import com.example.storage.domain.storagefeature.StorageFeatureMapper;
 import com.example.storage.domain.storagefeature.StorageFeatureService;
 import com.example.storage.util.ImageConverter;
 import jakarta.annotation.Resource;
@@ -33,14 +30,20 @@ public class StoragesService {
 
     @Resource
     private StorageMapper storageMapper;
-    @Resource
-    private StorageFeatureMapper storageFeatureMapper;
 
     public List<StorageImageInfo> getStorageInfos() {
         List<Storage> storages = storageService.getActiveStorages();
         List<StorageImageInfo> storageImageInfos = storageMapper.toStorageInfos(storages);
         addImageData(storageImageInfos);
         return storageImageInfos;
+    }
+
+    public List<StorageImageInfo> findFilteredStorages(FilteredStorageRequest request) {
+        List<Integer> requiredFeatureIds = getRequiredFeatureIds(request.getFeatureTypes());
+        List<Storage> storages = storageFeatureService.findFilteredStoragesBy(request.getCountyId(), requiredFeatureIds);
+        List<StorageImageInfo> storageInfos = storageMapper.toStorageInfos(storages);
+        addImageData(storageInfos);
+        return storageInfos;
     }
 
     private void addImageData(List<StorageImageInfo> storageImageInfos) {
@@ -51,25 +54,14 @@ public class StoragesService {
         }
     }
 
-    public List<StorageFeatureDto> findFilteredStorages(FilteredStorageRequest request) {
-//        List<Storage> filteredStorages = storageService.getStorageInfoBy(countyId);
-//        List<StorageImageInfo> filteredstorageInfos = storageMapper.toStorageInfos(filteredStorages);
-//        addImageData(filteredstorageInfos);
-        List<FeatureType> featureTypes = request.getFeatureTypes();
-        List<Integer> integerList = new ArrayList<>();
+
+    private static List<Integer> getRequiredFeatureIds(List<FeatureType> featureTypes) {
+        List<Integer> requiredFeatureIds = new ArrayList<>();
         for (FeatureType featureType : featureTypes) {
             if (featureType.getIsAvailable()) {
-                Integer featureId = featureType.getFeatureId();
-                integerList.add(featureId); // Add featureId to the integerList
+                requiredFeatureIds.add(featureType.getFeatureId());
             }
         }
-
-        Integer[] requiredFeatureIds = integerList.toArray(new Integer[0]);
-
-
-        List<StorageFeature> filteredStorages = storageFeatureService.findFilteredStoragesBy(request.getCountyId(), requiredFeatureIds);
-        return storageFeatureMapper.toStorageFeatureDtos(filteredStorages);
-
+        return requiredFeatureIds;
     }
 }
-

@@ -2,6 +2,7 @@ package com.example.storage.domain.storage;
 
 import com.example.storage.business.storage.dto.StorageImageInfo;
 
+import com.example.storage.domain.storagefeature.StorageFeature;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -16,6 +17,4 @@ public interface StorageMapper {
 
     List<StorageImageInfo> toStorageInfos(List<Storage> storages);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Storage partialUpdate(StorageImageInfo storageImageInfo, @MappingTarget Storage storage);
 }

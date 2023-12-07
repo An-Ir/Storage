@@ -4,7 +4,6 @@ import com.example.storage.business.storage.dto.FilteredStorageRequest;
 import com.example.storage.business.storage.dto.StorageImageInfo;
 
 import com.example.storage.business.storage.dto.StorageInfo;
-import com.example.storage.domain.storagefeature.StorageFeatureDto;
 import com.example.storage.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -41,7 +40,7 @@ public class StoragesController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "403", description = "Valikutele vastavat rendipinda ei ole", content = @Content(schema = @Schema(implementation = ApiError.class)))
     })
-    public List<StorageFeatureDto> findFilteredStorages(@RequestBody FilteredStorageRequest request) {
+    public List<StorageImageInfo> findFilteredStorages(@RequestBody FilteredStorageRequest request) {
         return storagesService.findFilteredStorages(request);
     }
 

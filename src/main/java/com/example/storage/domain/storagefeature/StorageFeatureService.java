@@ -1,5 +1,6 @@
 package com.example.storage.domain.storagefeature;
 
+import com.example.storage.domain.storage.Storage;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,7 @@ public class StorageFeatureService {
     @Resource
     private StorageFeatureRepository storageFeatureRepository;
 
-    public List<StorageFeature> findFilteredStoragesBy(Integer countyId, Integer[] requiredFeatureIds) {
-
-        Integer[] featureIds = new Integer[]{1, 2};
-        Long numFeatures = 2L;
-        return storageFeatureRepository.findStoragesByFeatureIds(featureIds, numFeatures);
+    public List<Storage> findFilteredStoragesBy(Integer countyId, List<Integer> requiredFeatureIds) {
+        return storageFeatureRepository.findStoragesByFeatureIds(countyId,requiredFeatureIds, requiredFeatureIds.size());
     }
 }

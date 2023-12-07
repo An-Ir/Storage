@@ -1,6 +1,9 @@
 package com.example.storage.domain.storage;
 
 import com.example.storage.business.Status;
+import com.example.storage.domain.feature.FeatureRepository;
+import com.example.storage.domain.storagefeature.StorageFeature;
+import com.example.storage.domain.storagefeature.StorageFeatureRepository;
 import com.example.storage.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -17,9 +20,4 @@ public class StorageService {
         return storageRepository.findByStatus(Status.ACTIVE);
     }
 
-    public List<Storage> getStorageInfoBy(Integer countyId) {
-        List<Storage> filteredStorages = storageRepository.findByLocationCountyIdAndStatus(countyId, Status.ACTIVE);
-        ValidationService.validateStoragesFound(filteredStorages);
-        return filteredStorages;
-    }
 }
