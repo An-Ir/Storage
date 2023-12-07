@@ -48,3 +48,15 @@ INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, pric
 INSERT INTO storage.feature (id, name) VALUES (DEFAULT, 'Elekter');
 INSERT INTO storage.feature (id, name) VALUES (DEFAULT, 'Küte');
 INSERT INTO storage.feature (id, name) VALUES (DEFAULT, 'Valve');
+
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 1, 1);
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 3, 1);
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 4, 1);
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 5, 1);
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 5, 2);
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 6, 1);
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 6, 2);
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 6, 3);
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 7, 1);
+INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 7, 2);
+
