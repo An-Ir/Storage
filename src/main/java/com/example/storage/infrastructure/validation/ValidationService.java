@@ -1,9 +1,11 @@
 package com.example.storage.infrastructure.validation;
 
 
+import com.example.storage.domain.storage.Storage;
 import com.example.storage.domain.user.User;
 import com.example.storage.infrastructure.exception.BusinessException;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.example.storage.infrastructure.validation.Error.*;
@@ -25,5 +27,11 @@ public class ValidationService {
             throw new BusinessException("Email already exists", 111);
         }
 
+    }
+
+    public static void validateStoragesFound(List<Storage> filteredStorages) {
+        if (filteredStorages.isEmpty()) {
+            throw new BusinessException(NO_LOCATION_FOUND.getMessage(), NO_LOCATION_FOUND.getErrorCode());
+        }
     }
 }

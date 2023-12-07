@@ -20,12 +20,12 @@ public class Profile {
 
     @Size(max = 30)
     @NotNull
-    @Column(name = "given_name", nullable = false, length = 30)
+    @Column(name = "first_name", nullable = false, length = 30)
     private String firstName;
 
     @Size(max = 50)
     @NotNull
-    @Column(name = "surname", nullable = false, length = 50)
+    @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
 
     @NotNull

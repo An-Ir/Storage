@@ -1,6 +1,10 @@
 package com.example.storage.domain.storage;
 
 import com.example.storage.business.Status;
+import com.example.storage.domain.feature.FeatureRepository;
+import com.example.storage.domain.storagefeature.StorageFeature;
+import com.example.storage.domain.storagefeature.StorageFeatureRepository;
+import com.example.storage.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +19,5 @@ public class StorageService {
     public List<Storage> getActiveStorages() {
         return storageRepository.findByStatus(Status.ACTIVE);
     }
+
 }
