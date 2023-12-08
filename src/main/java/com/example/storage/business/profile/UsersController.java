@@ -16,7 +16,7 @@ public class UsersController {
 
     @PostMapping("/register")
     public void registerNewUser(@RequestBody UserInfo userInfo) {
-        System.out.println("received new user info: " + userInfo);
+
         usersService.registerNewUser(userInfo);
     }
 }

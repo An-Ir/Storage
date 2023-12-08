@@ -15,4 +15,7 @@ public class TypeService {
         return typeRepository.findAll();
     }
 
+    public Type getTypeBy(Integer typeId) {
+        return typeRepository.getReferenceById(typeId);
+    }
 }

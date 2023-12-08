@@ -14,4 +14,8 @@ public class FeatureService {
     public List<Feature> getAllFeatures() {
         return featureRepository.findAll();
     }
+    public Feature getFeatureBy(Integer featureId) {
+
+        return featureRepository.getReferenceById(featureId);
+    }
 }

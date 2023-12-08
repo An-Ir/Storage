@@ -20,4 +20,7 @@ public class StorageService {
         return storageRepository.findByStatus(Status.ACTIVE);
     }
 
+    public void saveStorage(Storage storage) {
+        storageRepository.save(storage);
+    }
 }

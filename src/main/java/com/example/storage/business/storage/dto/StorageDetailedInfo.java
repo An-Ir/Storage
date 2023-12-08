@@ -1,21 +1,19 @@
 package com.example.storage.business.storage.dto;
 
-import com.example.storage.domain.type.Type;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Data
-public class StorageInfo {
+public class StorageDetailedInfo {
     private Integer countyId;
+    private Integer typeId;
     private BigDecimal longitude;
     private BigDecimal latitude;
-    private Integer area;
-    private Integer typeId;
-    private List<Integer> featureIds;
+    private Integer squareMeters;
     private Integer price;
-    private String status;
     private String description;
-    private Integer imageId;
+    private String imageData;
+    private List<FeatureInfo> featureInfos;
 }
