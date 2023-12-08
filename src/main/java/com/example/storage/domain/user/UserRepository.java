@@ -7,6 +7,9 @@ import java.util.Optional;
 
 
 public interface UserRepository extends JpaRepository<User, Integer> {
+    @Override
+    User getReferenceById(Integer integer);
+
     @Query("select (count(u) > 0) from User u where upper(u.email) like upper(?1)")
     boolean existByEmail(String email);
     @Query("select u from User u where u.email = ?1 and u.password = ?2 and u.status = ?3")

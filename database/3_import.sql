@@ -60,3 +60,6 @@ INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT
 INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 7, 1);
 INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 7, 2);
 
+INSERT INTO storage.feature (id, name) VALUES (default, 'elekter');
+INSERT INTO storage.feature (id, name) VALUES (default, 'kute');
+INSERT INTO storage.feature (id, name) VALUES (default, 'valve');

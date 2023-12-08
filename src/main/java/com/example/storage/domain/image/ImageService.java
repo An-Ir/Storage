@@ -12,4 +12,8 @@ public class ImageService {
     public Image getImageBy(Integer id) {
         return imageRepository.findByStorageId(id);
     }
+
+    public void saveImage(Image image) {
+        imageRepository.save(image);
+    }
 }

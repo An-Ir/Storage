@@ -27,7 +27,7 @@ public class UsersController {
             @ApiResponse(responseCode = "403", description = "Selline kasutaja on juba loodud", content = @Content(schema = @Schema(implementation = ApiError.class)))
     })
     public void registerNewUser(@RequestBody UserInfo userInfo) {
-        System.out.println("received new user info: " + userInfo);
+
         usersService.registerNewUser(userInfo);
     }
 }

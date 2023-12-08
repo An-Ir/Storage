@@ -13,6 +13,11 @@ public class StorageFeatureService {
     private StorageFeatureRepository storageFeatureRepository;
 
     public List<Storage> findFilteredStoragesBy(Integer countyId, List<Integer> requiredFeatureIds) {
-        return storageFeatureRepository.findStoragesByFeatureIds(countyId,requiredFeatureIds, requiredFeatureIds.size());
+        return storageFeatureRepository.findStoragesByFeatureIds(countyId, requiredFeatureIds, requiredFeatureIds.size());
+    }
+
+
+    public void saveAll(List<StorageFeature> storageFeatures) {
+        storageFeatureRepository.saveAll(storageFeatures);
     }
 }

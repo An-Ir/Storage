@@ -2,7 +2,7 @@ package com.example.storage.business.storage;
 
 import com.example.storage.business.storage.dto.FilteredStorageRequest;
 import com.example.storage.business.storage.dto.StorageImageInfo;
-
+import com.example.storage.business.storage.dto.StorageDetailedInfo;
 import com.example.storage.business.storage.dto.StorageInfo;
 import com.example.storage.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,7 +23,9 @@ public class StoragesController {
 
     @PostMapping("/storage")
     @Operation(summary = "Uue lao lisamine")
-    public void addNewStorage(@RequestBody StorageInfo storageInfo) {
+    public void addNewStorage(@RequestParam Integer userId, @RequestBody StorageDetailedInfo storageDetailedInfo) {
+        storagesService.addNewStorage(userId, storageDetailedInfo);
+
     }
 
     @GetMapping("/locations")

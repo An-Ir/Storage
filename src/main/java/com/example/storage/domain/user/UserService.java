@@ -21,11 +21,16 @@ public class UserService {
     }
 
     public User createUser(User user) {
-
         return userRepository.save(user);
     }
 
     public boolean isExistByEmail(String email) {
+
         return userRepository.existByEmail(email);
+    }
+
+
+    public User getUserBy(Integer userId) {
+        return userRepository.getReferenceById(userId);
     }
 }
