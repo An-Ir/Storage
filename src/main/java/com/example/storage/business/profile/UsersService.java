@@ -27,31 +27,25 @@ public class UsersService {
 
     public void registerNewUser(UserInfo userInfo) {
         boolean existByEmail = userService.isExistByEmail(userInfo.getEmail());
-        System.out.println("Check already exist");
         ValidationService.isExistByEmail(existByEmail);
         User userEntity = createAndSaveUser(userInfo);
         createAndSaveProfile(userInfo, userEntity);
     }
 
-    private void createAndSaveProfile(UserInfo userInfo, User userEntity) {
-        System.out.println("create new profile");
-        Profile profileEntity = profileMapper.toEntity(userInfo);
-        System.out.println("created new profile: " + profileEntity);
-        profileEntity.setUser(userEntity);
-        System.out.println("Profile before DB: " + profileEntity);
-        profileService.createProfile(profileEntity);
-        System.out.println("saved profile: " + profileEntity);
-    }
-
     private User createAndSaveUser(UserInfo userInfo) {
-        System.out.println("create new user");
         User userEntity = userMapper.toEntity(userInfo);
         userEntity.setStatus(ACTIVE);
-        System.out.println("created new user: " + userEntity);
         userService.createUser(userEntity);
-        System.out.println("saved user: " + userEntity);
         return userEntity;
     }
+
+    private void createAndSaveProfile(UserInfo userInfo, User userEntity) {
+        Profile profileEntity = profileMapper.toEntity(userInfo);
+        profileEntity.setUser(userEntity);
+        profileService.createProfile(profileEntity);
+    }
+
+
 
 
 }
