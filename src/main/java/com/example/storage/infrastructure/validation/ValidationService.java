@@ -24,7 +24,7 @@ public class ValidationService {
     public static void isExistByEmail(boolean emailExist) {
         if (emailExist) {
             System.out.println("Email already exists");
-            throw new BusinessException("Email already exists", 111);
+            throw new BusinessException(CONFLICTING_CREDENTIALS.getMessage(), CONFLICTING_CREDENTIALS.getErrorCode());
         }
 
     }

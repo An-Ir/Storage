@@ -1,9 +1,10 @@
 package com.example.storage.domain.storage;
 
 import com.example.storage.business.storage.dto.StorageImageInfo;
-
-import com.example.storage.domain.storagefeature.StorageFeature;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
