@@ -40,3 +40,6 @@ INSERT INTO storage.storage (id, user_id, type_id, location_id, area, price, des
 INSERT INTO storage.storage (id, user_id, type_id, location_id, area, price, description, status) VALUES (DEFAULT, 2, 3, 5, 500, 400, 'Kõle sara Täkumetsas', 'A');
 INSERT INTO storage.storage (id, user_id, type_id, location_id, area, price, description, status) VALUES (DEFAULT, 3, 4, 3, 740, 987, 'Hiiglaslik angaar', 'A');
 
+INSERT INTO storage.feature (id, name) VALUES (default, 'elekter');
+INSERT INTO storage.feature (id, name) VALUES (default, 'kute');
+INSERT INTO storage.feature (id, name) VALUES (default, 'valve');

@@ -6,6 +6,7 @@ import com.example.storage.domain.county.County;
 import com.example.storage.domain.county.CountyService;
 import com.example.storage.domain.feature.Feature;
 import com.example.storage.domain.feature.FeatureService;
+import com.example.storage.domain.image.Image;
 import com.example.storage.domain.image.ImageService;
 import com.example.storage.domain.location.Location;
 import com.example.storage.domain.location.LocationMapper;
@@ -19,6 +20,7 @@ import com.example.storage.domain.type.Type;
 import com.example.storage.domain.type.TypeService;
 import com.example.storage.domain.user.User;
 import com.example.storage.domain.user.UserService;
+import com.example.storage.util.ImageConverter;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -138,12 +140,22 @@ public class StoragesService {
 
         storageService.saveStorage(storage);
 
+//
+        String imageData = storageDetailedInfo.getImageData();
+        byte[] bytes = ImageConverter.stringToByteArray(imageData);
+
+        Image image = new Image();
+        image.setStorage(storage);
+        image.setData(bytes);
+
+        imageService.saveImage(image);
+
         // TODO on vaja teha uued sissekanded tabelisse storage_feature
         // TODO on vaja luua uus tuhi list StorageFeature objectidest (new ArrayList) ja panna muutuja nimeks storageFeatures
 
+
+
         List<StorageFeature> storageFeatures = new ArrayList<>();
-
-
         // TODO on vaja v6tta StorageDetailedInfo objecti seest List<FeatureInfo> featureInfos massiiv
 
         List<FeatureInfo> featureInfos = storageDetailedInfo.getFeatureInfos();
@@ -161,18 +173,30 @@ public class StoragesService {
                 //        //  getReferenceById (selline metod on JPA repositoris on olemas. ei pea uut tegima)
                 //        //  = Entity object
                 Feature feature = featureService.getFeatureBy(featureInfo.getFeatureId());
+                //  Nuud on sul olemas feature object (Entity)
+                //  Nuud on vaja luua uus storageFeature object (new StorageInfo()).
+                StorageFeature storageFeature = new StorageFeature();
 
+                //  Nuud peab selle storageFeature objecti kulge panema storage ja feature objecti. (storage object on sul varasemalt olemas)
+
+
+                storageFeature.setStorage(storage);
+                storageFeature.setFeature(feature);
+
+                //  Nuud on storageFeature object valmis. Peab lihtsalt selle lisama storageFeatures listi
+                storageFeatures.add(storageFeature);
 
             }
+
         }
 
-        //  Nuud on sul olemas feature object (Entity)
-        //  Nuud on vaja luua uus storageFeature object (new StorageInfo()).
+        storageFeatureService.saveAll(storageFeatures);
 
 
 
-        //  Nuud peab selle storageFeature objecti kulge panema storage ja feature objecti. (storage object on sul varasemalt olemas)
-        //  Nuud on storageFeature object valmis. Peab lihtsalt selle lisama storageFeatures listi
+
+
+
 
 
         //  parast for tsuklit on sul olemas taidetud storageFeatures list
