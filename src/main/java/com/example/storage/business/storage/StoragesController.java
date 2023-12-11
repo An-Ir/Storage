@@ -1,17 +1,16 @@
 package com.example.storage.business.storage;
 
 import com.example.storage.business.storage.dto.FilteredStorageRequest;
-import com.example.storage.business.storage.dto.StorageImageInfo;
 import com.example.storage.business.storage.dto.StorageDetailedInfo;
-import com.example.storage.business.storage.dto.StorageInfo;
+import com.example.storage.business.storage.dto.StorageImageInfo;
 import com.example.storage.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.web.bind.annotation.*;
 import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

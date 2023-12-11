@@ -1,5 +1,6 @@
 package com.example.storage.domain.storage;
 
+import com.example.storage.business.storage.dto.StorageDetailedInfo;
 import com.example.storage.business.storage.dto.StorageImageInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

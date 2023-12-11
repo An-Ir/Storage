@@ -1,18 +1,10 @@
 package com.example.storage.business.storage;
 
 import com.example.storage.business.feature.dto.FeatureType;
-import com.example.storage.business.storage.dto.FilteredStorageRequest;
-import com.example.storage.business.storage.dto.StorageImageInfo;
-import com.example.storage.domain.image.Image;
-import com.example.storage.domain.image.ImageService;
-import com.example.storage.domain.storage.Storage;
-import com.example.storage.domain.storage.StorageMapper;
-import com.example.storage.domain.storage.StorageService;
-import com.example.storage.domain.storagefeature.StorageFeatureService;
-import com.example.storage.util.ImageConverter;
-import jakarta.annotation.Resource;
 import com.example.storage.business.storage.dto.FeatureInfo;
+import com.example.storage.business.storage.dto.FilteredStorageRequest;
 import com.example.storage.business.storage.dto.StorageDetailedInfo;
+import com.example.storage.business.storage.dto.StorageImageInfo;
 import com.example.storage.domain.county.County;
 import com.example.storage.domain.county.CountyService;
 import com.example.storage.domain.feature.Feature;
@@ -234,7 +226,7 @@ public class StoragesService {
         //  Finito
 
     }
-}
+
 
     private void addImageData(List<StorageImageInfo> storageImageInfos) {
         for (StorageImageInfo storageImageInfo : storageImageInfos) {
