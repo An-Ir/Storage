@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StoragesService {
@@ -265,6 +266,31 @@ public class StoragesService {
         Storage storage = storageService.getStorageBy(storageId);
         storageMapper.partialUpdate(storage, storageDetailedInfo);
         handleTypeUpdate(storage, storageDetailedInfo);
+        handleLocationUpdate(storage, storageDetailedInfo);
+
+    }
+
+    private void handleLocationUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
+        if (!isLocationUpdateRequired(storage, storageDetailedInfo)) {
+            Optional<Location> optionalLocation = locationService.getLocationBy(storageDetailedInfo.getLatitude(),
+                                                                                storageDetailedInfo.getLongitude());
+            if (optionalLocation.isEmpty()) {
+                Location location = locationMapper.toLocation(storageDetailedInfo);
+                County county = countyService.getCountyBy(storageDetailedInfo.getCountyId());
+                location.setCounty(county);
+                locationService.saveLocation(location);
+                storage.setLocation(location);
+            } else {
+                storage.setLocation(optionalLocation.get());
+            }
+
+        }
+    }
+
+    private boolean isLocationUpdateRequired(Storage storage, StorageDetailedInfo storageDetailedInfo) {
+        boolean isSameLatitude = storage.getLocation().getLatitude().equals(storageDetailedInfo.getLatitude());
+        boolean isSameLongitude = storage.getLocation().getLongitude().equals(storageDetailedInfo.getLongitude());
+        return isSameLatitude && isSameLongitude;
     }
 
     private void handleTypeUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
