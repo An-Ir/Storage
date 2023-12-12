@@ -23,6 +23,7 @@ import com.example.storage.domain.user.User;
 import com.example.storage.domain.user.UserService;
 import com.example.storage.util.ImageConverter;
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -257,5 +258,11 @@ public class StoragesService {
         Storage storage = storageService.getStorageBy(storageId);
         storage.setStatus(Status.DELETED);
         storageService.saveStorage(storage);
+    }
+
+    @Transactional
+    public void updateStorageInfo(Integer storageId, StorageDetailedInfo storageDetailedInfo) {
+        Storage storage = storageService.getStorageBy(storageId);
+        storageMapper.partialUpdate(storage, storageDetailedInfo);
     }
 }

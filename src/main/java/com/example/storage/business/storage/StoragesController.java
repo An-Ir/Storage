@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/")
 public class StoragesController {
 
     @Resource
@@ -56,5 +57,11 @@ public class StoragesController {
     @Operation(summary = "kustutab asukoha storageId järgi")
     public void deleteStorage(@RequestParam Integer storageId) {
         storagesService.deleteStorage(storageId);
+    }
+
+    @PutMapping("/mystorages")
+    @Operation(summary = "Uuendab storageId abil ara storage Info")
+    public void updateStorageInfo(@RequestParam Integer storageId, @RequestBody StorageDetailedInfo storageDetailedInfo) {
+        storagesService.updateStorageInfo(storageId, storageDetailedInfo);
     }
 }
