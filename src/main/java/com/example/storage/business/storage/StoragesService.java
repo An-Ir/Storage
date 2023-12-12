@@ -264,5 +264,21 @@ public class StoragesService {
     public void updateStorageInfo(Integer storageId, StorageDetailedInfo storageDetailedInfo) {
         Storage storage = storageService.getStorageBy(storageId);
         storageMapper.partialUpdate(storage, storageDetailedInfo);
+        handleTypeUpdate(storage, storageDetailedInfo);
+    }
+
+    private void handleTypeUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
+        if (isTypeUpdateRequired(storage, storageDetailedInfo)) {
+            Type type = typeService.getTypeBy(storageDetailedInfo.getTypeId());
+            storage.setType(type);
+        }
+    }
+
+    private boolean isTypeUpdateRequired(Storage storage, StorageDetailedInfo storageDetailedInfo) {
+        return !haveSameTypeIds(storage, storageDetailedInfo);
+    }
+
+    private boolean haveSameTypeIds(Storage storage, StorageDetailedInfo storageDetailedInfo) {
+        return storage.getType().getId().equals(storageDetailedInfo.getTypeId());
     }
 }
