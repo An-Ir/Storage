@@ -32,7 +32,6 @@ import java.util.List;
 
 @Service
 public class StoragesService {
-
     @Resource
     private StorageService storageService;
 
@@ -209,13 +208,6 @@ public class StoragesService {
         }
 
         storageFeatureService.saveAll(storageFeatures);
-
-
-
-
-
-
-
 
         //  parast for tsuklit on sul olemas taidetud storageFeatures list
         //  Peab lihtsalt selle ka andmebaasi ara salvestada.

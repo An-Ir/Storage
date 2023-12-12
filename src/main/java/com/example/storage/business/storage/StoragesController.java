@@ -21,7 +21,7 @@ public class StoragesController {
     private StoragesService storagesService;
 
     @PostMapping("/storage")
-    @Operation(summary = "Uue lao lisamine")
+    @Operation(summary = "Uue pinna lisamine")
     public void addNewStorage(@RequestParam Integer userId, @RequestBody StorageDetailedInfo storageDetailedInfo) {
         storagesService.addNewStorage(userId, storageDetailedInfo);
 
