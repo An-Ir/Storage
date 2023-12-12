@@ -1,10 +1,8 @@
 package com.example.storage.business.storage;
 
+import com.example.storage.business.Status;
 import com.example.storage.business.feature.dto.FeatureType;
-import com.example.storage.business.storage.dto.FeatureInfo;
-import com.example.storage.business.storage.dto.FilteredStorageRequest;
-import com.example.storage.business.storage.dto.StorageDetailedInfo;
-import com.example.storage.business.storage.dto.StorageImageInfo;
+import com.example.storage.business.storage.dto.*;
 import com.example.storage.domain.county.County;
 import com.example.storage.domain.county.CountyService;
 import com.example.storage.domain.feature.Feature;
@@ -32,6 +30,7 @@ import java.util.List;
 
 @Service
 public class StoragesService {
+
     @Resource
     private StorageService storageService;
 
@@ -171,7 +170,6 @@ public class StoragesService {
         // TODO on vaja luua uus tuhi list StorageFeature objectidest (new ArrayList) ja panna muutuja nimeks storageFeatures
 
 
-
         List<StorageFeature> storageFeatures = new ArrayList<>();
         // TODO on vaja v6tta StorageDetailedInfo objecti seest List<FeatureInfo> featureInfos massiiv
 
@@ -209,6 +207,7 @@ public class StoragesService {
 
         storageFeatureService.saveAll(storageFeatures);
 
+
         //  parast for tsuklit on sul olemas taidetud storageFeatures list
         //  Peab lihtsalt selle ka andmebaasi ara salvestada.
 
@@ -237,5 +236,26 @@ public class StoragesService {
             }
         }
         return requiredFeatureIds;
+    }
+
+    public List<UserStorageInfo> findUserStorages(Integer userId) {
+        List<Storage> userStorageInfos = storageService.getUserStorageInfos(userId);
+        List<UserStorageInfo> storageInfos = storageMapper.toUserStorageInfos(userStorageInfos);
+        addUserImageData(storageInfos);
+        return storageInfos;
+    }
+
+    private void addUserImageData(List<UserStorageInfo> userStorageInfos) {
+        for (UserStorageInfo userStorageInfo : userStorageInfos) {
+            Image image = imageService.getImageBy(userStorageInfo.getStorageId());
+            String imageAsString = ImageConverter.byteArrayToString(image.getData());
+            userStorageInfo.setImageData(imageAsString);
+        }
+    }
+
+    public void deleteStorage(Integer storageId) {
+        Storage storage = storageService.getStorageBy(storageId);
+        storage.setStatus(Status.DELETED);
+        storageService.saveStorage(storage);
     }
 }
