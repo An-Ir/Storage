@@ -8,10 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UsersController {
@@ -29,5 +26,12 @@ public class UsersController {
     public void registerNewUser(@RequestBody UserInfo userInfo) {
 
         usersService.registerNewUser(userInfo);
+    }
+
+    @GetMapping("/profile")
+    @Operation(summary = "Tagastab kasutaja andmed profiilivaatesse")
+    public UserInfo getUserInfo(@RequestParam Integer userId) {
+        return usersService.getUserInfo(userId);
+
     }
 }

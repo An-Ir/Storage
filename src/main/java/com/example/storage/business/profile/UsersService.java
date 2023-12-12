@@ -45,7 +45,8 @@ public class UsersService {
         profileService.createProfile(profileEntity);
     }
 
-
-
-
+    public UserInfo getUserInfo(Integer userId) {
+        Profile profile = profileService.getProfile(userService.getUserBy(userId).getId());
+        return profileMapper.toUserInfo(profile);
+    }
 }

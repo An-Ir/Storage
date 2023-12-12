@@ -9,4 +9,10 @@ public interface ProfileMapper {
     @Mapping(source = "lastName", target = "lastName")
     Profile toEntity(UserInfo userInfo);
 
+    @Mapping(source = "user.role.id", target = "roleId")
+    @Mapping(source = "firstName", target = "firstName")
+    @Mapping(source = "lastName", target = "lastName")
+    @Mapping(source = "user.email", target = "email")
+    @Mapping(source = "user.password", target = "password")
+    UserInfo toUserInfo(Profile profile);
 }
