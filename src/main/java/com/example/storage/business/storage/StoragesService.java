@@ -1,5 +1,6 @@
 package com.example.storage.business.storage;
 
+import com.example.storage.business.Status;
 import com.example.storage.business.feature.dto.FeatureType;
 import com.example.storage.business.storage.dto.*;
 import com.example.storage.domain.county.County;
