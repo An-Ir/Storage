@@ -26,4 +26,6 @@ public class OrderInfo implements Serializable {
     private Integer orderId;
     private LocalDate startDate;
     private LocalDate endDate;
+    private String status;
+
 }

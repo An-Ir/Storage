@@ -1,5 +1,6 @@
 package com.example.storage.domain.order;
 
+import com.example.storage.business.Status;
 import com.example.storage.business.order.dto.OrderInfo;
 import org.mapstruct.*;
 
@@ -16,10 +17,19 @@ public interface OrderMapper {
     @Mapping(source = "id", target = "orderId")
     @Mapping(source = "startDate", target = "startDate")
     @Mapping(source = "endDate", target = "endDate")
+    @Mapping(source = "status", target = "status", qualifiedByName = "getFullStatus")
     OrderInfo toOrderInfo(Order order);
+
+
+    @Named("getFullStatus")
+    static String getFullStatus(String shortStatus) {
+        return switch (shortStatus) {
+            case Status.BOOKED -> "Broneeritud";
+            case Status.CANCELLED -> "Tühistatud";
+            default -> "lõppenud";
+        };
+    }
 
     List<OrderInfo> toOrderInfos(List<Order> orders);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Order partialUpdate(OrderInfo orderInfo, @MappingTarget Order order);
 }

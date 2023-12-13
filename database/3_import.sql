@@ -6,6 +6,9 @@ INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAUL
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 3, 'anu', '123', 'A');
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 3, 'andrus', '123', 'D');
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 3, 'anton', '123', 'D');
+INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 2, 'jüri', '123', 'A');
+INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 2, 'mari', '123', 'A');
+
 
 INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Harju');
 INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Hiiu');
@@ -63,3 +66,17 @@ INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT
 INSERT INTO storage.feature (id, name) VALUES (default, 'elekter');
 INSERT INTO storage.feature (id, name) VALUES (default, 'kute');
 INSERT INTO storage.feature (id, name) VALUES (default, 'valve');
+
+INSERT INTO storage.profile (id, first_name, last_name, user_id) VALUES (DEFAULT, 'anu', 'i', 2);
+INSERT INTO storage.profile (id, first_name, last_name, user_id) VALUES (DEFAULT, 'andrus', 'k', 3);
+INSERT INTO storage.profile (id, first_name, last_name, user_id) VALUES (DEFAULT, 'anton', 'k', 4);
+INSERT INTO storage.profile (id, first_name, last_name, user_id) VALUES (DEFAULT, 'admin', 'admin', 1);
+INSERT INTO storage.profile (id, first_name, last_name, user_id) VALUES (DEFAULT, 'jüri', '123', 5);
+INSERT INTO storage.profile (id, first_name, last_name, user_id) VALUES (DEFAULT, 'mari', '123', 6);
+
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 1, 5, 5, '2023-12-24', '2024-01-31', 'B');
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 2, 5, 4, '2024-02-01', '2024-06-13', 'B');
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 3, 6, 3, '2024-04-07', '2024-04-21', 'B');
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 3, 6, 7, '2023-03-14', '2023-12-07', 'H');
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 4, 6, 6, '2023-12-03', '2024-03-06', 'B');
+

@@ -41,4 +41,8 @@ public class Order {
     @Column(name = "end_date")
     private LocalDate endDate;
 
+    @NotNull
+    @Column(name = "status", nullable = false, length = Integer.MAX_VALUE)
+    private String status;
+
 }
