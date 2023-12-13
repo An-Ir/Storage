@@ -3,10 +3,7 @@ package com.example.storage.domain.storage;
 import com.example.storage.business.storage.dto.StorageDetailedInfo;
 import com.example.storage.business.storage.dto.StorageImageInfo;
 import com.example.storage.business.storage.dto.UserStorageInfo;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -36,6 +33,13 @@ public interface StorageMapper {
     UserStorageInfo toUserStorageInfo(Storage storage);
 
     List<UserStorageInfo> toUserStorageInfos(List<Storage> storages);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(source = "storageName", target = "name")
+    @Mapping(source = "squareMeters", target = "area")
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "description", target = "description")
+    Storage partialUpdate(@MappingTarget Storage storage, StorageDetailedInfo storageDetailedInfo);
 
 
 }

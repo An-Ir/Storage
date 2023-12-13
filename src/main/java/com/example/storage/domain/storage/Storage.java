@@ -56,4 +56,18 @@ public class Storage {
     @Column(name = "status", nullable = false, length = Integer.MAX_VALUE)
     private String status;
 
+    @Override
+    public String toString() {
+        return "Storage{" +
+                "id=" + id +
+                ", user=" + user +
+                ", type=" + type +
+                ", location=" + location +
+                ", name='" + name + '\'' +
+                ", area=" + area +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }
