@@ -21,4 +21,11 @@ public class Type {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Override
+    public String toString() {
+        return "Type{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
