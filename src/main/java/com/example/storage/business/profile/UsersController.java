@@ -34,4 +34,11 @@ public class UsersController {
         return usersService.getUserInfo(userId);
 
     }
+
+    @PutMapping("/profile")
+    @Operation(summary = "Uuendab userId abil ära user ja profile andmed.")
+    public void updateUserProfile(@RequestParam Integer userId, @RequestBody UserInfo userInfo) {
+        usersService.updateUserProfile(userId, userInfo);
+    }
+
 }

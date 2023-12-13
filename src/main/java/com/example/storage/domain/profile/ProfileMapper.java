@@ -15,4 +15,9 @@ public interface ProfileMapper {
     @Mapping(source = "user.email", target = "email")
     @Mapping(source = "user.password", target = "password")
     UserInfo toUserInfo(Profile profile);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(source = "firstName", target = "firstName")
+    @Mapping(source = "lastName", target = "lastName")
+    Profile partialUpdate(@MappingTarget Profile profile, UserInfo userInfo);
 }
