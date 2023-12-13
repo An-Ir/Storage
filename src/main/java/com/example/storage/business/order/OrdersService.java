@@ -1,11 +1,12 @@
 package com.example.storage.business.order;
 
+import com.example.storage.business.Status;
 import com.example.storage.business.order.dto.OrderInfo;
-import com.example.storage.business.storage.dto.StorageImageInfo;
 import com.example.storage.domain.image.Image;
 import com.example.storage.domain.image.ImageService;
 import com.example.storage.domain.order.Order;
 import com.example.storage.domain.order.OrderMapper;
+import com.example.storage.domain.order.OrderRepository;
 import com.example.storage.domain.order.OrderService;
 import com.example.storage.util.ImageConverter;
 import jakarta.annotation.Resource;
@@ -24,6 +25,11 @@ public class OrdersService {
 
     @Resource
     private ImageService imageService;
+    private final OrderRepository orderRepository;
+
+    public OrdersService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     public List<OrderInfo> findCustomerOrders(Integer customerUserId) {
         List<Order> orders = orderService.getCustomerOrders(customerUserId);
@@ -39,5 +45,11 @@ public class OrdersService {
             String imageAsString = ImageConverter.byteArrayToString(image.getData());
             orderInfo.setImageData(imageAsString);
         }
+    }
+
+    public void cancelOrder(Integer orderId) {
+        Order order = orderService.findOrderById(orderId);
+        order.setStatus(Status.CANCELLED);
+        orderRepository.save(order);
     }
 }
