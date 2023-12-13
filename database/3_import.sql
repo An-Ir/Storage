@@ -4,7 +4,7 @@ INSERT INTO storage.role (id, name) VALUES (DEFAULT, 'seller');
 
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 1, 'admin', '123', 'A');
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 2, 'anu', '123', 'A');
-INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 2, 'andrus', '123', 'D');
+INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 3, 'andrus', '123', 'A');
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 2, 'anton', '123', 'D');
 
 INSERT INTO storage.county (id, name) VALUES (DEFAULT, 'Harju');

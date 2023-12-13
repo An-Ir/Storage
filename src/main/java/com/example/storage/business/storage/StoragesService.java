@@ -3,6 +3,7 @@ package com.example.storage.business.storage;
 import com.example.storage.business.feature.dto.FeatureType;
 import com.example.storage.business.storage.dto.FilteredStorageRequest;
 import com.example.storage.business.storage.dto.StorageImageInfo;
+import com.example.storage.business.type.dto.TypeInfo;
 import com.example.storage.domain.image.Image;
 import com.example.storage.domain.image.ImageService;
 import com.example.storage.domain.storage.Storage;
@@ -210,7 +211,7 @@ public class StoragesService {
         //  Finito
 
     }
-}
+
 
     private void addImageData(List<StorageImageInfo> storageImageInfos) {
         for (StorageImageInfo storageImageInfo : storageImageInfos) {
@@ -230,4 +231,17 @@ public class StoragesService {
         }
         return requiredFeatureIds;
     }
+
+    public StorageDetailedInfo getStorageDetailedInfo(Integer storageId) {
+
+        Storage storage = storageService.getStorageBy(storageId);
+        StorageDetailedInfo storageDetailedInfo = storageMapper.toStorageDetailedInfo(storage);
+        getAndsetFeatureTypes(storageId, feature);
+        return storageDetailedInfo;
+    }
+    private void getAndsetFeatureTypes(Integer storageId, FeatureInfo featureInfo) {
+        List<FeatureType> featureTypes = getFeatureTypesBy(storageId);
+        featureInfo.setFeatureTypes(featureTypes);
+    }
+
 }

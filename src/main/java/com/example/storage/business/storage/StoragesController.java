@@ -3,7 +3,6 @@ package com.example.storage.business.storage;
 import com.example.storage.business.storage.dto.FilteredStorageRequest;
 import com.example.storage.business.storage.dto.StorageImageInfo;
 import com.example.storage.business.storage.dto.StorageDetailedInfo;
-import com.example.storage.business.storage.dto.StorageInfo;
 import com.example.storage.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -27,6 +26,13 @@ public class StoragesController {
         storagesService.addNewStorage(userId, storageDetailedInfo);
 
     }
+
+    @GetMapping("/storage")
+    @Operation(summary = "Ühe lao andmete tagastamine")
+    public StorageDetailedInfo getStorageDetailedInfo(@RequestParam Integer storageId) {
+        return storagesService.getStorageDetailedInfo(storageId);
+    }
+
 
     @GetMapping("/locations")
     @Operation(summary = "Tagastab asukohtade pildid koos nimedega.",

@@ -20,6 +20,9 @@ public class StorageService {
         return storageRepository.findByStatus(Status.ACTIVE);
     }
 
+    public Storage getStorageBy(Integer storageId) {
+        return storageRepository.getReferenceById(storageId);
+    }
     public void saveStorage(Storage storage) {
         storageRepository.save(storage);
     }
