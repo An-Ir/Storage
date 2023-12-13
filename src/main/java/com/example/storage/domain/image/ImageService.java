@@ -3,6 +3,8 @@ package com.example.storage.domain.image;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ImageService {
 
@@ -16,4 +18,5 @@ public class ImageService {
     public void saveImage(Image image) {
         imageRepository.save(image);
     }
+
 }
