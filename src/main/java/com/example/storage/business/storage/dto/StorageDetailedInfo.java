@@ -23,5 +23,6 @@ public class StorageDetailedInfo {
     private Integer price;
     private String description;
     private String imageData;
+    private String userId;
     private List<FeatureInfo> featureInfos;
 }
