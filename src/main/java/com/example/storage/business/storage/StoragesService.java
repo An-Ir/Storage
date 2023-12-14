@@ -236,12 +236,9 @@ public class StoragesService {
 
         Storage storage = storageService.getStorageBy(storageId);
         StorageDetailedInfo storageDetailedInfo = storageMapper.toStorageDetailedInfo(storage);
-        getAndsetFeatureTypes(storageId, feature);
         return storageDetailedInfo;
     }
-    private void getAndsetFeatureTypes(Integer storageId, FeatureInfo featureInfo) {
-        List<FeatureType> featureTypes = getFeatureTypesBy(storageId);
-        featureInfo.setFeatureTypes(featureTypes);
-    }
+
+
 
 }
