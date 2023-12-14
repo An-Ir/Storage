@@ -4,8 +4,8 @@ INSERT INTO storage.role (id, name) VALUES (DEFAULT, 'seller');
 
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 1, 'admin', '123', 'A');
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 3, 'anu', '123', 'A');
-INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 3, 'andrus', '123', 'D');
-INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 3, 'anton', '123', 'D');
+INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 3, 'andrus', '123', 'A');
+INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 3, 'anton', '123', 'A');
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 2, 'jüri', '123', 'A');
 INSERT INTO storage."user" (id, role_id, email, password, status) VALUES (DEFAULT, 2, 'mari', '123', 'A');
 
@@ -31,6 +31,7 @@ INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Garaaž');
 INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Ladu');
 INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Angaar');
 INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Varia');
+INSERT INTO storage.type (id, name) VALUES (DEFAULT, 'Konteiner');
 
 INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 1, 59.41095402926769, 24.73704188387255);
 INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 9, 58.38106365626340, 24.49951298280597);
@@ -39,18 +40,72 @@ INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAUL
 INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 3, 59.38471618906680, 27.33955930526720);
 INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 13, 57.77789351473060, 26.03407621534382);
 INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 7, 59.36180293754910, 26.31411555746854);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 1, 59.30222065512080, 24.83431489548591);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 1, 59.43302543042186, 24.83939098765145);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 1, 59.44687055472840, 24.72072270613740);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 2, 58.98789298104840, 22.74905157269218);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 3, 59.39307040911077, 27.24512536966780);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 3, 59.36591617902440, 28.13022865117734);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 4, 58.81257249832427, 26.83504379757740);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 5, 58.88383443952687, 25.55527908671960);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 5, 58.82201364353759, 25.41728103111100);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 6, 58.93517263799774, 23.49153426759180);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 7, 59.35596669489000, 26.37572020176170);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 7, 59.55892261678390, 26.29251585496800);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 8, 58.09189413271280, 27.46044561796610);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 8, 58.05254757926470, 27.04345822070890);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 9, 58.38898281870390, 24.38662581253550);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 9, 58.41346071968850, 24.66865463308700);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 10, 59.01345663945750, 24.80111574791970);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 11, 58.40761323489080, 22.06394631323940);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 12, 58.23039785671100, 26.41974095209530);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 12, 58.36496675754280, 26.72426286876440);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 12, 58.42209431028740, 26.75194667937070);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 13, 57.78311454976920, 26.03188195826350);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 14, 58.42663317407150, 25.68421199311080);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 14, 58.35481363633420, 25.57410031068640);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 15, 57.83127113629040, 27.03195478980030);
+INSERT INTO storage.location (id, county_id, latitude, longitude) VALUES (DEFAULT, 15, 57.96580607191371, 27.63284958117900);
 
-INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 2, 6, 'minu garaaž', 60, 210, 'Garaaž Valga kesklinnas', 'A');
-INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 3, 5, 'tootmishoone', 500, 400, 'Kõle sara Täkumetsas', 'A');
+
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 2, 6, 'Kodune garaaž', 60, 210, 'Garaaž Valga kesklinnas', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 3, 5, 'tootmishoone', 500, 400, 'Seisnud aastaid tühjana', 'A');
 INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 4, 3, 'unistuste angaar', 740, 987, 'Hiiglaslik angaar', 'A');
-INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 2, 4, 'Esplanaadi', 150, 150, 'Puhas garaažiboks', 'A');
-INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 1, 2, 1, 'uhiuus garaaž', 80, 100, 'lihtsalt imelin', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 2, 4, 'Hea asukohaga garaaž', 150, 150, 'Puhas garaažiboks', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 2, 1, 'uhiuus garaaž', 80, 100, 'Värskelt valminud garaaž.', 'A');
 INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 4, 2, 'Eralennuki angaar', 1000, 5000, 'Kõigi kellade ja viledega angaar.', 'A');
 INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 1, 7, 'kelder', 40, 50, 'Kõk vanaema hoidised mahuvad ära', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 1, 8, 'Hubane kelder', 45, 30, 'Valgusküllane, kuiv ja turvaline keldriruum. Ideaalne väikestele hoiustamisvajadustele.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 1, 14, 'Stiilne hoiuruum', 80, 60, 'Moodne keldrikorrus, mis sobib nii inventari kui ka kunsti hoiustamiseks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 1, 11, 'Multifunktsionaalne kelder', 30, 40, 'Väike, kuid mitmekülgne ruum sobib nii harrastustegevusteks kui ka hoiustamiseks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 3, 24, 'Tehniliselt varustatud ladu', 250, 200, 'Suur ladu koos laadimisrampidega ja kaasaegse turvavarustusega.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 3, 27, 'Stiilne äripind laopinnana', 300, 800, 'Elegantselt kujundatud ruum sobib nii laoks kui ka näidispinnaks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 3, 17, 'Efektiivne laoruum', 180, 400, 'Kompaktne, kuid efektiivselt kasutatav ladu sobib väiksemate kaupade hoiustamiseks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 4, 26, 'Avaram lennuki angaar', 1200, 2000, 'Suur angaar koos hooldusruumide ja ladudega, sobib lennukitele või suuremahuliseks hoiustamiseks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 4, 15, 'Autoremonditöökoda ', 600, 150, 'Funktsionaalne angaar autode remondiks, varustatud tööriistadega ja suure tööalaga.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 4, 29, 'Eraldi tööstuslik angaar ', 800, 400, 'Suur tööstuspind tootmisvõimalustega, sobib erinevateks tööstusprotsessideks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 5, 30, 'Kaasaegne tootmisüksus', 700, 1500, 'Kõrgtehnoloogiline ruum koos montaažiliinide ja büroopinnaga, sobilik erinevate tootmisprotsesside jaoks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 5, 20, 'Tehniliselt varustatud tootmisruum', 2200, 4600, 'Mitmekülgne ruum, kus on kõrged laed ja spetsiifilised seadmed erinevate tootmistegevuste jaoks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 5, 23, 'Kohandatav tootmisplats', 1800, 3300, 'Avatud ruum, mis võimaldab kohandada vastavalt tootmise vajadustele, ideaalne väiksematele tootmisettevõtetele.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 6, 9, 'Modulaarsed hoiukonteinerid', 38, 100, 'Vastupidavad ja liigutatavad konteinerid erineva mahutavusega, ideaalsed ajutiseks hoiustamiseks või ehitusplatsidele.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 6, 25, 'Kohandatav konteinerlahendus', 30, 500, 'Modifitseeritavad konteinerid sobivad nii kaubavedudeks kui ka loovateks ruumilahendusteks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 6, 19, 'Kvaliteetsed merekonteinerid', 42, 250, 'Vastupidavad merekonteinerid erinevates suurustes ja seisukordades, sobilikud nii kauba- kui ka hoiuruumideks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 5, 21, 'Maaliline aiamaja', 45, 50, 'Armas aiamaja sobib nii töötoa kui ka aia tarvikute hoiustamiseks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 5, 22, 'Avar garaažiruum', 52, 80, 'Funktsionaalne garaaž, mis sobib nii autodele kui ka tööriistadele.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 5, 32, 'Unikaalne kuuriruum', 66, 55, 'Klassikaline kuuriruum sobib hoiustamiseks ja töötegemiseks aias.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 5, 18, 'Maalähedane aia kuur', 38, 43, 'Traditsiooniline puitkuur, mis pakub hubast ruumi aiatööriistadele ja aiatöödeks vajalikele tarvikutele.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 5, 31, 'Kaasaegne kuurigaraaž', 72, 90, 'Mitmefunktsionaalne kuur, millel on autodele mõeldud garaažiosa ja eraldi hoiuruum aiatööriistadele.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 5, 12, 'Stiilne disainikuur', 67, 120, 'Kaunilt kujundatud kuur, sobilik nii hoiustamiseks kui ka loovaks töötegemiseks - kunsti või käsitöö jaoks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 3, 28, 'Modulaarne laoboks', 15, 49, 'Kompaktne ja mugav laoruum, mis on kohandatav erineva suuruse ja ladustamisvajadusega.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 3, 33, 'Tehniliselt varustatud laoboks', 38, 229, 'Varustatud turvaseadmete ja hõlpsasti ligipääsetava ladustamisruumiga, ideaalne väiksemate ettevõtete jaoks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 3, 3, 10, 'Ülisuured laoboksid', 160, 530, 'Ruumikad laoruumid suurte kaupade ja masinate hoiustamiseks, millel on kauba vastuvõtu ja väljastamise mugavus.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 4, 6, 13, 'Mugav transpordikonteiner', 26, 59, 'Kaasaegne konteinerlahendus, mis tagab turvalise kaupade transportimise. Varustatud laadimisuksega ja lihtsasti liigutatav, ideaalne nii lühiajaliseks hoiustamiseks kui ka logistikavajadusteks.', 'A');
+INSERT INTO storage.storage (id, user_id, type_id, location_id, name, area, price, description, status) VALUES (DEFAULT, 2, 1, 16, 'Disainitud hoiuruum', 95, 109, 'Esmaklassiline keldrikorrus, mis pakub kõrgtehnoloogilist turvavarustust ja kohandatavaid hoiuvõimalusi. Valgusküllane ja hästi ventileeritud ruum, sobilik nii hinnaliste esemete kui ka dokumentide hoiustamiseks.', 'A');
 
 INSERT INTO storage.feature (id, name) VALUES (DEFAULT, 'Elekter');
 INSERT INTO storage.feature (id, name) VALUES (DEFAULT, 'Küte');
 INSERT INTO storage.feature (id, name) VALUES (DEFAULT, 'Valve');
+INSERT INTO storage.feature (id, name) VALUES (DEFAULT, 'Lukustatav');
 
 INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 1, 1);
 INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 3, 1);
@@ -62,10 +117,6 @@ INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT
 INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 6, 3);
 INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 7, 1);
 INSERT INTO storage.storage_feature (id, storage_id, feature_id) VALUES (DEFAULT, 7, 2);
-
-INSERT INTO storage.feature (id, name) VALUES (default, 'elekter');
-INSERT INTO storage.feature (id, name) VALUES (default, 'kute');
-INSERT INTO storage.feature (id, name) VALUES (default, 'valve');
 
 INSERT INTO storage.profile (id, first_name, last_name, user_id) VALUES (DEFAULT, 'anu', 'i', 2);
 INSERT INTO storage.profile (id, first_name, last_name, user_id) VALUES (DEFAULT, 'andrus', 'k', 3);
