@@ -1,6 +1,7 @@
 package com.example.storage.business.storage;
 
 import com.example.storage.business.storage.dto.FilteredStorageRequest;
+import com.example.storage.business.storage.dto.StorageImageInfo;
 import com.example.storage.business.storage.dto.StorageDetailedInfo;
 import com.example.storage.business.storage.dto.StorageImageInfo;
 import com.example.storage.business.storage.dto.UserStorageInfo;
@@ -10,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.web.bind.annotation.*;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +30,13 @@ public class StoragesController {
         storagesService.addNewStorage(userId, storageDetailedInfo);
 
     }
+
+    @GetMapping("/storage")
+    @Operation(summary = "Ühe lao andmete tagastamine")
+    public StorageDetailedInfo getStorageDetailedInfo(@RequestParam Integer storageId) {
+        return storagesService.getStorageDetailedInfo(storageId);
+    }
+
 
     @GetMapping("/locations")
     @Operation(summary = "Tagastab asukohtade pildid koos nimedega.",

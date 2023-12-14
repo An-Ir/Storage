@@ -42,4 +42,18 @@ public interface StorageMapper {
     Storage partialUpdate(@MappingTarget Storage storage, StorageDetailedInfo storageDetailedInfo);
 
 
+    @Mapping(source = "location.id", target = "locationId")
+    @Mapping(source = "location.county.id", target = "countyId")
+    @Mapping(source = "location.county.name", target = "countyName")
+    @Mapping(source = "location.latitude", target = "latitude")
+    @Mapping(source = "location.longitude", target = "longitude")
+    @Mapping(source = "type.id", target = "typeId")
+    @Mapping(source = "type.name", target = "typeName")
+    @Mapping(source = "name", target = "storageName")
+    @Mapping(source = "area", target = "squareMeters")
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "description", target = "description")
+    StorageDetailedInfo toStorageDetailedInfo(Storage storage);
+
+
 }

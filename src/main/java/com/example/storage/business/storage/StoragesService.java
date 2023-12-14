@@ -2,7 +2,18 @@ package com.example.storage.business.storage;
 
 import com.example.storage.business.Status;
 import com.example.storage.business.feature.dto.FeatureType;
-import com.example.storage.business.storage.dto.*;
+import com.example.storage.business.storage.dto.FilteredStorageRequest;
+import com.example.storage.business.storage.dto.StorageImageInfo;
+import com.example.storage.domain.image.Image;
+import com.example.storage.domain.image.ImageService;
+import com.example.storage.domain.storage.Storage;
+import com.example.storage.domain.storage.StorageMapper;
+import com.example.storage.domain.storage.StorageService;
+import com.example.storage.domain.storagefeature.StorageFeatureService;
+import com.example.storage.util.ImageConverter;
+import jakarta.annotation.Resource;
+import com.example.storage.business.storage.dto.FeatureInfo;
+import com.example.storage.business.storage.dto.StorageDetailedInfo;
 import com.example.storage.domain.county.County;
 import com.example.storage.domain.county.CountyService;
 import com.example.storage.domain.feature.Feature;
@@ -174,6 +185,8 @@ public class StoragesService {
 
 
         List<StorageFeature> storageFeatures = new ArrayList<>();
+
+
         // TODO on vaja v6tta StorageDetailedInfo objecti seest List<FeatureInfo> featureInfos massiiv
 
         List<FeatureInfo> featureInfos = storageDetailedInfo.getFeatureInfos();
@@ -308,4 +321,16 @@ public class StoragesService {
     private boolean haveSameTypeIds(Storage storage, StorageDetailedInfo storageDetailedInfo) {
         return storage.getType().getId().equals(storageDetailedInfo.getTypeId());
     }
+}
+
+
+    public StorageDetailedInfo getStorageDetailedInfo(Integer storageId) {
+
+        Storage storage = storageService.getStorageBy(storageId);
+        StorageDetailedInfo storageDetailedInfo = storageMapper.toStorageDetailedInfo(storage);
+        return storageDetailedInfo;
+    }
+
+
+
 }
