@@ -1,0 +1,23 @@
+{
+  "countyId": 1,
+  "typeId": 3,
+  "longitude": 20.00000000000000,
+  "latitude": 20.00000000000000,
+  "squareMeters": 600,
+  "storageName": "storageName",
+  "price": 700,
+  "description": "description",
+  "imageData": "imageData",
+  "featureInfos": [
+    {
+      "featureId": 1,
+      "featureName": "string",
+      "isAvailable": true
+    },
+    {
+      "featureId": 2,
+      "featureName": "string",
+      "isAvailable": false
+    }
+  ]
+}

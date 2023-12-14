@@ -27,4 +27,8 @@ public class StorageFeatureService {
     public List<Integer> findStorageFeatureIdsBy(Integer storageId) {
         return storageFeatureRepository.findStorageFeaturesIdsBy(storageId);
     }
+
+    public void deleteStorageFeaturesBy(Storage storage) {
+        storageFeatureRepository.deleteBy(storage);
+    }
 }
