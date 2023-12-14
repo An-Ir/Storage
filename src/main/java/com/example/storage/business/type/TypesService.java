@@ -20,4 +20,6 @@ public class TypesService {
         List<Type> allTypes = typeService.getAllTypes();
         return typeMapper.toTypeInfos(allTypes);
     }
+
+
 }

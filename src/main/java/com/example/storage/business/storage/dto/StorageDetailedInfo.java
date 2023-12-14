@@ -11,8 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StorageDetailedInfo {
+    private String storageName;
+    private Integer locationId;
     private Integer countyId;
+    private String countyName;
     private Integer typeId;
+    private String typeName;
     private BigDecimal longitude;
     private BigDecimal latitude;
     private Integer squareMeters;

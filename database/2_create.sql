@@ -41,12 +41,13 @@ CREATE TABLE location
 -- Table: order
 CREATE TABLE "order"
 (
-    id               serial NOT NULL,
-    user_id          int    NOT NULL,
-    customer_user_id int    NOT NULL,
-    storage_id       int    NOT NULL,
-    start_date       date   NOT NULL,
-    end_date         date   NULL,
+    id               serial  NOT NULL,
+    user_id          int     NOT NULL,
+    customer_user_id int     NOT NULL,
+    storage_id       int     NOT NULL,
+    start_date       date    NOT NULL,
+    end_date         date    NULL,
+    status           char(1) NOT NULL,
     CONSTRAINT order_pk PRIMARY KEY (id)
 );
 
