@@ -54,6 +54,7 @@ public interface StorageMapper {
     @Mapping(source = "area", target = "squareMeters")
     @Mapping(source = "price", target = "price")
     @Mapping(source = "description", target = "description")
+    @Mapping(source = "user.id", target = "userId")
     StorageDetailedInfo toStorageDetailedInfo(Storage storage);
 
 
