@@ -285,13 +285,13 @@ public class StoragesService {
         if (storageDetailedInfo.getImageData() != null && !storageDetailedInfo.getImageData().isEmpty()) {
             byte[] imageDataBytes = ImageConverter.stringToByteArray(storageDetailedInfo.getImageData());
 
-            Image image = imageService.getImageBy(storage.getId());
-            if (image == null) {
-                image = new Image();
-                image.setStorage(storage);
+            Image storageImage = imageService.getImageBy(storage.getId());
+            if (storageImage == null) {
+                storageImage = new Image();
+                storageImage.setStorage(storage);
             }
-            image.setData(imageDataBytes);
-            imageService.saveImage(image);
+            storageImage.setData(imageDataBytes);
+            imageService.saveImage(storageImage);
 
         }
     }
