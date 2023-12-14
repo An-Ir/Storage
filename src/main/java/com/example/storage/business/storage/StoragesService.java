@@ -8,6 +8,7 @@ import com.example.storage.domain.county.CountyService;
 import com.example.storage.domain.feature.Feature;
 import com.example.storage.domain.feature.FeatureService;
 import com.example.storage.domain.image.Image;
+import com.example.storage.domain.image.ImageRepository;
 import com.example.storage.domain.image.ImageService;
 import com.example.storage.domain.location.Location;
 import com.example.storage.domain.location.LocationMapper;
@@ -61,6 +62,11 @@ public class StoragesService {
 
     @Resource
     private FeatureService featureService;
+    private final ImageRepository imageRepository;
+
+    public StoragesService(ImageRepository imageRepository) {
+        this.imageRepository = imageRepository;
+    }
 
     public List<StorageImageInfo> getStorageInfos() {
         List<Storage> storages = storageService.getActiveStorages();
@@ -272,6 +278,22 @@ public class StoragesService {
         handleLocationUpdate(storage, storageDetailedInfo);
         storageService.saveStorage(storage);
         handleStorageFeaturesUpdate(storage, storageDetailedInfo);
+        handleImageUpdate(storage, storageDetailedInfo);
+    }
+
+    private void handleImageUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
+        if (storageDetailedInfo.getImageData() != null && !storageDetailedInfo.getImageData().isEmpty()) {
+            byte[] imageDataBytes = ImageConverter.stringToByteArray(storageDetailedInfo.getImageData());
+
+            Image image = imageService.getImageBy(storage.getId());
+            if (image == null) {
+                image = new Image();
+                image.setStorage(storage);
+            }
+            image.setData(imageDataBytes);
+            imageService.saveImage(image);
+
+        }
     }
 
     private void handleStorageFeaturesUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
