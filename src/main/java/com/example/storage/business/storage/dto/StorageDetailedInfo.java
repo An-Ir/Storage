@@ -16,7 +16,6 @@ public class StorageDetailedInfo {
     private BigDecimal longitude;
     private BigDecimal latitude;
     private Integer squareMeters;
-    private String storageName;
     private Integer price;
     private String description;
     private String imageData;

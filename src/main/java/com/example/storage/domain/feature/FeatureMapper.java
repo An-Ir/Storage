@@ -1,6 +1,7 @@
 package com.example.storage.domain.feature;
 
 import com.example.storage.business.feature.dto.FeatureType;
+import com.example.storage.business.storage.dto.FeatureInfo;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public interface FeatureMapper {
 
     List<FeatureType> toFeatureTypes(List<Feature> features);
 
-
-
+    @Mapping(source = "id", target = "featureId")
+    @Mapping(source = "name", target = "featureName")
+    FeatureInfo toFeatureInfo(Feature feature);
 }

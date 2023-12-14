@@ -3,7 +3,6 @@ package com.example.storage.domain.storagefeature;
 import com.example.storage.domain.storage.Storage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
@@ -14,6 +13,10 @@ public interface StorageFeatureRepository extends JpaRepository<StorageFeature, 
             "GROUP BY sf.storage HAVING COUNT(DISTINCT sf.feature.id) = :numFeatures")
     List<Storage> findStoragesByFeatureIds(Integer countyId, List<Integer> featureIds, int numFeatures);
 
+    @Query("select s from StorageFeature s where s.storage.id = ?1")
+    List<StorageFeature> findStorageFeaturesBy(Integer storageId);
 
+    @Query("select s.feature.id from StorageFeature s where s.storage.id = ?1")
+    List<Integer> findStorageFeaturesIdsBy(Integer storageId);
 
 }

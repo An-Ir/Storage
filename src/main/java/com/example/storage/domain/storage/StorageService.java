@@ -28,8 +28,4 @@ public class StorageService {
         return storageRepository.findByUserIdAndStatus(userId, Status.ACTIVE);
     }
 
-
-    public Storage getStorageBy(Integer storageId) {
-        return storageRepository.getReferenceById(storageId);
-    }
 }

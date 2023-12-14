@@ -17,7 +17,14 @@ public class StorageFeatureService {
     }
 
 
-    public void saveAll(List<StorageFeature> storageFeatures) {
-        storageFeatureRepository.saveAll(storageFeatures);
+    public void saveAll(List<StorageFeature> storageStorageFeatures) {
+        storageFeatureRepository.saveAll(storageStorageFeatures);
+    }
+
+    public List<StorageFeature> getStorageFeatures(Integer storageId) {
+        return storageFeatureRepository.findStorageFeaturesBy(storageId);
+    }
+    public List<Integer> findStorageFeatureIdsBy(Integer storageId) {
+        return storageFeatureRepository.findStorageFeaturesIdsBy(storageId);
     }
 }

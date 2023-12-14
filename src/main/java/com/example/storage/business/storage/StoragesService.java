@@ -2,21 +2,11 @@ package com.example.storage.business.storage;
 
 import com.example.storage.business.Status;
 import com.example.storage.business.feature.dto.FeatureType;
-import com.example.storage.business.storage.dto.FilteredStorageRequest;
-import com.example.storage.business.storage.dto.StorageImageInfo;
-import com.example.storage.domain.image.Image;
-import com.example.storage.domain.image.ImageService;
-import com.example.storage.domain.storage.Storage;
-import com.example.storage.domain.storage.StorageMapper;
-import com.example.storage.domain.storage.StorageService;
-import com.example.storage.domain.storagefeature.StorageFeatureService;
-import com.example.storage.util.ImageConverter;
-import jakarta.annotation.Resource;
-import com.example.storage.business.storage.dto.FeatureInfo;
-import com.example.storage.business.storage.dto.StorageDetailedInfo;
+import com.example.storage.business.storage.dto.*;
 import com.example.storage.domain.county.County;
 import com.example.storage.domain.county.CountyService;
 import com.example.storage.domain.feature.Feature;
+import com.example.storage.domain.feature.FeatureMapper;
 import com.example.storage.domain.feature.FeatureService;
 import com.example.storage.domain.image.Image;
 import com.example.storage.domain.image.ImageService;
@@ -73,6 +63,10 @@ public class StoragesService {
 
     @Resource
     private FeatureService featureService;
+
+    @Resource
+    private FeatureMapper featureMapper;
+
 
     public List<StorageImageInfo> getStorageInfos() {
         List<Storage> storages = storageService.getActiveStorages();
@@ -183,8 +177,7 @@ public class StoragesService {
         // TODO on vaja luua uus tuhi list StorageFeature objectidest (new ArrayList) ja panna muutuja nimeks storageFeatures
 
 
-
-        List<StorageFeature> storageFeatures = new ArrayList<>();
+        List<StorageFeature> storageStorageFeatures = new ArrayList<>();
 
 
         // TODO on vaja v6tta StorageDetailedInfo objecti seest List<FeatureInfo> featureInfos massiiv
@@ -203,7 +196,7 @@ public class StoragesService {
                 //        //  EntityRepository ->
                 //        //  getReferenceById (selline metod on JPA repositoris on olemas. ei pea uut tegima)
                 //        //  = Entity object
-                Feature feature = featureService.getFeatureBy(featureInfo.getFeatureId());
+                com.example.storage.domain.feature.Feature feature = featureService.getFeatureBy(featureInfo.getFeatureId());
                 //  Nuud on sul olemas feature object (Entity)
                 //  Nuud on vaja luua uus storageFeature object (new StorageInfo()).
                 StorageFeature storageFeature = new StorageFeature();
@@ -215,13 +208,13 @@ public class StoragesService {
                 storageFeature.setFeature(feature);
 
                 //  Nuud on storageFeature object valmis. Peab lihtsalt selle lisama storageFeatures listi
-                storageFeatures.add(storageFeature);
+                storageStorageFeatures.add(storageFeature);
 
             }
 
         }
 
-        storageFeatureService.saveAll(storageFeatures);
+        storageFeatureService.saveAll(storageStorageFeatures);
 
 
         //  parast for tsuklit on sul olemas taidetud storageFeatures list
@@ -287,7 +280,7 @@ public class StoragesService {
     private void handleLocationUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
         if (!isLocationUpdateRequired(storage, storageDetailedInfo)) {
             Optional<Location> optionalLocation = locationService.getLocationBy(storageDetailedInfo.getLatitude(),
-                                                                                storageDetailedInfo.getLongitude());
+                    storageDetailedInfo.getLongitude());
             if (optionalLocation.isEmpty()) {
                 Location location = locationMapper.toLocation(storageDetailedInfo);
                 County county = countyService.getCountyBy(storageDetailedInfo.getCountyId());
@@ -321,16 +314,37 @@ public class StoragesService {
     private boolean haveSameTypeIds(Storage storage, StorageDetailedInfo storageDetailedInfo) {
         return storage.getType().getId().equals(storageDetailedInfo.getTypeId());
     }
-}
 
 
     public StorageDetailedInfo getStorageDetailedInfo(Integer storageId) {
-
         Storage storage = storageService.getStorageBy(storageId);
         StorageDetailedInfo storageDetailedInfo = storageMapper.toStorageDetailedInfo(storage);
+        addImageDataToStorageDetailedInfo(storageId, storageDetailedInfo);
+        addFeatureInfosToStorageDetailedInfo(storageId, storageDetailedInfo);
         return storageDetailedInfo;
     }
 
+    private void addImageDataToStorageDetailedInfo(Integer storageId, StorageDetailedInfo storageDetailedInfo) {
+        Image image = imageService.getImageBy(storageId);
+        String imageAsString = ImageConverter.byteArrayToString(image.getData());
+        storageDetailedInfo.setImageData(imageAsString);
+    }
+
+    private void addFeatureInfosToStorageDetailedInfo(Integer storageId, StorageDetailedInfo storageDetailedInfo) {
+        List<FeatureInfo> featureInfos = getFeatureInfos(storageId);
+        storageDetailedInfo.setFeatureInfos(featureInfos);
+    }
+
+    private List<FeatureInfo> getFeatureInfos(Integer storageId) {
+        List<Integer> requiredFeatureIds = storageFeatureService.findStorageFeatureIdsBy(storageId);
+        List<FeatureInfo> featureInfos = new ArrayList<>();
+        for (Feature feature : featureService.getAllFeatures()) {
+            FeatureInfo featureInfo = featureMapper.toFeatureInfo(feature);
+            featureInfo.setIsAvailable(requiredFeatureIds.contains(feature.getId()));
+            featureInfos.add(featureInfo);
+        }
+        return featureInfos;
+    }
 
 
 }
