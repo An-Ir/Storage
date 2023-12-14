@@ -172,6 +172,20 @@ public class StoragesService {
         // TODO on vaja luua uus tuhi list StorageFeature objectidest (new ArrayList) ja panna muutuja nimeks storageFeatures
 
 
+        createAndSaveStorageFeatures(storageDetailedInfo, storage);
+
+
+        //  parast for tsuklit on sul olemas taidetud storageFeatures list
+        //  Peab lihtsalt selle ka andmebaasi ara salvestada.
+
+        //  EntityService ->
+        //  EntityRepository ->
+        //  saveAll() - selline metod on JPA repositoris on olemas. ei pea uut tegima. See meetod v6tab sisse Entityd listi
+        //  Finito
+
+    }
+
+    private void createAndSaveStorageFeatures(StorageDetailedInfo storageDetailedInfo, Storage storage) {
         List<StorageFeature> storageFeatures = new ArrayList<>();
         // TODO on vaja v6tta StorageDetailedInfo objecti seest List<FeatureInfo> featureInfos massiiv
 
@@ -208,16 +222,6 @@ public class StoragesService {
         }
 
         storageFeatureService.saveAll(storageFeatures);
-
-
-        //  parast for tsuklit on sul olemas taidetud storageFeatures list
-        //  Peab lihtsalt selle ka andmebaasi ara salvestada.
-
-        //  EntityService ->
-        //  EntityRepository ->
-        //  saveAll() - selline metod on JPA repositoris on olemas. ei pea uut tegima. See meetod v6tab sisse Entityd listi
-        //  Finito
-
     }
 
 
@@ -267,30 +271,32 @@ public class StoragesService {
         storageMapper.partialUpdate(storage, storageDetailedInfo);
         handleTypeUpdate(storage, storageDetailedInfo);
         handleLocationUpdate(storage, storageDetailedInfo);
+        storageService.saveStorage(storage);
+        handleStorageFeaturesUpdate(storage, storageDetailedInfo);
+    }
 
+    private void handleStorageFeaturesUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
+        storageFeatureService.deleteStorageFeaturesBy(storage);
+        createAndSaveStorageFeatures(storageDetailedInfo, storage);
     }
 
     private void handleLocationUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
-        if (!isLocationUpdateRequired(storage, storageDetailedInfo)) {
-            Optional<Location> optionalLocation = locationService.getLocationBy(storageDetailedInfo.getLatitude(),
-                                                                                storageDetailedInfo.getLongitude());
-            if (optionalLocation.isEmpty()) {
-                Location location = locationMapper.toLocation(storageDetailedInfo);
-                County county = countyService.getCountyBy(storageDetailedInfo.getCountyId());
-                location.setCounty(county);
-                locationService.saveLocation(location);
-                storage.setLocation(location);
-            } else {
-                storage.setLocation(optionalLocation.get());
-            }
-
+        if (isLocationUpdateRequired(storage, storageDetailedInfo)) {
+            Location location = storage.getLocation();
+            location.setLatitude(storageDetailedInfo.getLatitude());
+            location.setLongitude(storageDetailedInfo.getLongitude());
+            County county = countyService.getCountyBy(storageDetailedInfo.getCountyId());
+            location.setCounty(county);
+            locationService.saveLocation(location);
         }
     }
 
     private boolean isLocationUpdateRequired(Storage storage, StorageDetailedInfo storageDetailedInfo) {
-        boolean isSameLatitude = storage.getLocation().getLatitude().equals(storageDetailedInfo.getLatitude());
-        boolean isSameLongitude = storage.getLocation().getLongitude().equals(storageDetailedInfo.getLongitude());
-        return isSameLatitude && isSameLongitude;
+        Location location = storage.getLocation();
+        boolean isSameLatitude = location.getLatitude().equals(storageDetailedInfo.getLatitude());
+        boolean isSameLongitude = location.getLongitude().equals(storageDetailedInfo.getLongitude());
+        boolean isSameCountyId = location.getCounty().getId().equals(storageDetailedInfo.getCountyId());
+        return !isSameLatitude || !isSameLongitude || !isSameCountyId;
     }
 
     private void handleTypeUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
