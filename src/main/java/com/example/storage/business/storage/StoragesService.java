@@ -9,6 +9,7 @@ import com.example.storage.domain.feature.Feature;
 import com.example.storage.domain.feature.FeatureMapper;
 import com.example.storage.domain.feature.FeatureService;
 import com.example.storage.domain.image.Image;
+import com.example.storage.domain.image.ImageRepository;
 import com.example.storage.domain.image.ImageService;
 import com.example.storage.domain.location.Location;
 import com.example.storage.domain.location.LocationMapper;
@@ -29,7 +30,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StoragesService {
@@ -63,6 +63,11 @@ public class StoragesService {
 
     @Resource
     private FeatureService featureService;
+    private final ImageRepository imageRepository;
+
+    public StoragesService(ImageRepository imageRepository) {
+        this.imageRepository = imageRepository;
+    }
 
     @Resource
     private FeatureMapper featureMapper;
@@ -281,6 +286,22 @@ public class StoragesService {
         handleLocationUpdate(storage, storageDetailedInfo);
         storageService.saveStorage(storage);
         handleStorageFeaturesUpdate(storage, storageDetailedInfo);
+        handleImageUpdate(storage, storageDetailedInfo);
+    }
+
+    private void handleImageUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
+        if (storageDetailedInfo.getImageData() != null && !storageDetailedInfo.getImageData().isEmpty()) {
+            byte[] imageDataBytes = ImageConverter.stringToByteArray(storageDetailedInfo.getImageData());
+
+            Image storageImage = imageService.getImageBy(storage.getId());
+            if (storageImage == null) {
+                storageImage = new Image();
+                storageImage.setStorage(storage);
+            }
+            storageImage.setData(imageDataBytes);
+            imageService.saveImage(storageImage);
+
+        }
     }
 
     private void handleStorageFeaturesUpdate(Storage storage, StorageDetailedInfo storageDetailedInfo) {
