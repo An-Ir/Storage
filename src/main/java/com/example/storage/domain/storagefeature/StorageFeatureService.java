@@ -20,4 +20,8 @@ public class StorageFeatureService {
     public void saveAll(List<StorageFeature> storageFeatures) {
         storageFeatureRepository.saveAll(storageFeatures);
     }
+
+    public void deleteStorageFeaturesBy(Storage storage) {
+        storageFeatureRepository.deleteBy(storage);
+    }
 }
