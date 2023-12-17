@@ -208,5 +208,9 @@ INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_da
 INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 2, 5, 4, '2024-02-01', '2024-06-13', 'B');
 INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 3, 6, 3, '2024-04-07', '2024-04-21', 'B');
 INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 3, 6, 7, '2023-03-14', '2023-12-07', 'H');
-INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 4, 6, 6, '2023-12-03', '2024-03-06', 'B');
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 2, 5, 27, '2024-08-01', '2024-12-27', 'B');
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 2, 5, 28, '2023-07-02', '2023-09-03', 'H');
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 2, 5, 33, '2024-08-01', '2024-10-31', 'B');
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 2, 5, 20, '2024-08-01', '2024-10-31', 'B');
+INSERT INTO storage."order" (id, user_id, customer_user_id, storage_id, start_date, end_date, status) VALUES (DEFAULT, 4, 6, 6, '2023-12-03', '2024-03-06', 'C');
 
